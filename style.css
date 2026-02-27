@@ -1,0 +1,1089 @@
+/* ==========================================================================
+   PORTFOLIO STYLESHEET — Sudhanshu Kumar Suman
+   File: style.css
+   
+   HOW THIS FILE IS ORGANIZED:
+   1.  Theme Variables  — Colors for dark & light mode
+   2.  Reset            — Remove default browser styles
+   3.  Navbar           — Top fixed navigation bar
+   4.  Theme Toggle     — Dark/light switch button
+   5.  Container        — Centers page content
+   6.  Hero Section     — First screen (name, role, terminal)
+   7.  Buttons          — Reusable button styles
+   8.  Terminal Card    — The fake code terminal in the hero
+   9.  Divider          — Thin horizontal line between sections
+   10. Section Commons  — Shared styles for all sections
+   11. Skills           — Skill chip tags
+   12. Projects         — Project cards grid
+   13. Wide Project Card — Full-width card for big projects
+   14. Timeline         — Education timeline
+   15. Training Card    — Single training card
+   16. Certificates     — Certificate cards grid
+   17. Contact          — Contact links section
+   18. Footer           — Bottom bar
+   19. Scroll Reveal    — Fade-in animation on scroll
+   20. Keyframe Anims   — @keyframes definitions
+   21. Responsive       — Mobile/tablet adjustments
+   ========================================================================== */
+
+
+/* ==========================================================================
+   1. THEME VARIABLES
+   These are CSS custom properties (variables). They change automatically
+   when the <html> tag switches between data-theme="dark" and data-theme="light".
+   To change a color, just edit the hex value here — it updates everywhere.
+   ========================================================================== */
+
+/* ── DARK MODE colors ── */
+[data-theme="dark"] {
+  --bg: #0f1117;              /* Main page background */
+  --surface: #161b27;         /* Slightly lighter surface (not used heavily) */
+  --card: #1c2133;            /* Card/box background */
+  --border: #2a3046;          /* Border lines color */
+  --accent: #4f7ef8;          /* Primary blue accent (links, buttons) */
+  --accent-hover: #3a68e0;    /* Darker blue for button hover */
+  --accent2: #22c997;         /* Green accent (badges, scores) */
+  --text: #c9d1e0;            /* Regular body text */
+  --text-strong: #e8edf5;     /* Stronger/bolder text */
+  --muted: #5c6b85;           /* Dimmed text (dates, labels) */
+  --heading: #f0f4ff;         /* Section headings */
+  --nav-bg: rgba(15,17,23,0.92);  /* Navbar bg with transparency */
+  --tag-bg: rgba(79,126,248,0.12); /* Tech tag background */
+  --tag-color: #7aa8ff;       /* Tech tag text color */
+  --tag-border: rgba(79,126,248,0.25); /* Tech tag border */
+  --timeline-line: #2a3046;   /* Vertical line in education timeline */
+}
+
+/* ── LIGHT MODE colors ── */
+[data-theme="light"] {
+  --bg: #f8f9fc;              /* Light gray page background */
+  --surface: #ffffff;         /* White surface */
+  --card: #ffffff;            /* White card background */
+  --border: #dde2ec;          /* Light gray border */
+  --accent: #3a68e0;          /* Blue accent */
+  --accent-hover: #2a55cc;    /* Darker blue on hover */
+  --accent2: #0fa87a;         /* Green accent */
+  --text: #4a5568;            /* Dark gray body text */
+  --text-strong: #2d3748;     /* Darker body text */
+  --muted: #8896a7;           /* Light muted gray */
+  --heading: #1a202c;         /* Near-black headings */
+  --nav-bg: rgba(248,249,252,0.94); /* Semi-transparent white navbar */
+  --tag-bg: rgba(58,104,224,0.08);  /* Light blue tag background */
+  --tag-color: #3a68e0;       /* Blue tag text */
+  --tag-border: rgba(58,104,224,0.2); /* Blue tag border */
+  --timeline-line: #dde2ec;   /* Light gray timeline line */
+}
+
+
+/* ==========================================================================
+   2. RESET
+   Removes default browser padding/margin so we start from a clean slate.
+   box-sizing: border-box means padding is included inside element width.
+   ========================================================================== */
+
+*, *::before, *::after {
+  box-sizing: border-box; /* Include padding in width calculations */
+  margin: 0;              /* Remove default margins */
+  padding: 0;             /* Remove default padding */
+}
+
+html {
+  scroll-behavior: smooth; /* Smooth scroll when clicking nav links */
+}
+
+body {
+  background: var(--bg);          /* Uses theme variable */
+  color: var(--text);             /* Uses theme variable */
+  font-family: 'Inter', sans-serif; /* Main font — clean and professional */
+  font-size: 15px;                /* Base font size */
+  line-height: 1.7;               /* Comfortable reading line spacing */
+  overflow-x: hidden;             /* Prevent horizontal scroll */
+  transition: background 0.3s, color 0.3s; /* Smooth theme switch animation */
+}
+
+
+/* ==========================================================================
+   3. NAVBAR
+   Fixed at the top of screen, always visible while scrolling.
+   Uses backdrop-filter blur for a frosted glass effect.
+   ========================================================================== */
+
+nav {
+  position: fixed;          /* Stays at top while scrolling */
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;             /* On top of all other content */
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Logo on left, links on right */
+  padding: 0 4rem;          /* Left/right space inside navbar */
+  height: 64px;             /* Fixed height */
+  background: var(--nav-bg); /* Semi-transparent background */
+  backdrop-filter: blur(14px); /* Frosted glass blur effect */
+  border-bottom: 1px solid var(--border); /* Bottom divider line */
+  transition: background 0.3s, border-color 0.3s; /* Smooth theme change */
+}
+
+/* The "Sudhanshu Kumar Suman" logo text on the left */
+.nav-logo {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--heading);
+  letter-spacing: -0.01em;
+}
+
+/* The "Kumar Suman" part in accent blue */
+.nav-logo span {
+  color: var(--accent);
+}
+
+/* Right side of navbar: links + toggle button */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem; /* Space between nav links and toggle */
+}
+
+/* The list of nav links: Skills, Projects, Education… */
+.nav-links {
+  display: flex;
+  gap: 2rem;       /* Space between each link */
+  list-style: none; /* Remove bullet points */
+}
+
+/* Individual nav link styling */
+.nav-links a {
+  color: var(--muted);       /* Default gray color */
+  text-decoration: none;     /* No underline */
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: color 0.2s;    /* Smooth color change on hover */
+}
+
+/* Nav link when hovered OR when it's the active section */
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--accent); /* Turn blue */
+}
+
+
+/* ==========================================================================
+   4. THEME TOGGLE BUTTON
+   The ☀️/🌙 button in the top-right corner.
+   Clicking it runs the toggleTheme() function in script.js.
+   ========================================================================== */
+
+.theme-toggle {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  cursor: pointer;           /* Show pointer cursor on hover */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  transition: all 0.2s;      /* Smooth scale/color change */
+  flex-shrink: 0;            /* Don't shrink on small screens */
+}
+
+.theme-toggle:hover {
+  border-color: var(--accent); /* Blue border on hover */
+  transform: scale(1.05);      /* Slight zoom effect */
+}
+
+
+/* ==========================================================================
+   5. CONTAINER
+   Centers all page content and limits max width.
+   Wrap your section content inside <div class="container"> to use this.
+   ========================================================================== */
+
+.container {
+  max-width: 960px;    /* Maximum width — won't stretch wider than this */
+  margin: 0 auto;      /* Auto left/right margin = centered */
+  padding: 0 2rem;     /* Space on left/right sides */
+}
+
+
+/* ==========================================================================
+   6. HERO SECTION
+   The first section you see — full viewport height.
+   Contains your name, role, description, and the terminal card.
+   ========================================================================== */
+
+#hero {
+  min-height: 100vh;   /* At least full screen height */
+  display: flex;
+  align-items: center; /* Vertically center content */
+  padding: 6rem 0 4rem; /* Top padding clears the navbar */
+}
+
+/* Two-column layout: text on left, terminal on right */
+.hero-inner {
+  display: grid;
+  grid-template-columns: 1fr auto; /* Left takes remaining space, right fits content */
+  gap: 4rem;           /* Space between columns */
+  align-items: center;
+  width: 100%;
+}
+
+/* Green "Available for Internships" pill badge */
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--accent2);
+  background: rgba(34, 201, 151, 0.1);   /* Transparent green background */
+  border: 1px solid rgba(34, 201, 151, 0.25);
+  padding: 0.3rem 0.75rem;
+  border-radius: 100px;  /* Fully rounded pill shape */
+  margin-bottom: 1.5rem;
+  animation: fadeUp 0.5s ease both; /* Fade in from below on load */
+}
+
+/* The tiny pulsing green dot before the badge text */
+.hero-badge::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;    /* Perfect circle */
+  background: var(--accent2);
+  animation: pulse 2s infinite; /* Pulsing animation — defined at bottom */
+}
+
+/* Your main name heading */
+h1.hero-name {
+  font-size: clamp(2.2rem, 4vw, 3.2rem); /* Responsive: min 2.2rem, max 3.2rem */
+  font-weight: 700;
+  color: var(--heading);
+  line-height: 1.15;
+  letter-spacing: -0.03em; /* Tight letter spacing for large headings */
+  animation: fadeUp 0.5s 0.08s ease both; /* 0.08s delay */
+}
+
+/* "CS Engineer · ML Developer" subtitle under name */
+.hero-role {
+  display: block;       /* New line */
+  font-size: clamp(1rem, 1.8vw, 1.15rem);
+  font-weight: 500;
+  color: var(--accent); /* Blue color */
+  margin-top: 0.5rem;
+  letter-spacing: -0.01em;
+  animation: fadeUp 0.5s 0.14s ease both; /* Slightly later delay */
+}
+
+/* Short description paragraph */
+.hero-desc {
+  margin-top: 1.2rem;
+  color: var(--text);
+  font-size: 0.95rem;
+  max-width: 500px;
+  animation: fadeUp 0.5s 0.2s ease both;
+}
+
+/* Row of small info items: location, CGPA, stack */
+.hero-meta {
+  margin-top: 1rem;
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap; /* Wrap to next line on small screens */
+  animation: fadeUp 0.5s 0.24s ease both;
+}
+
+/* Each individual meta item with icon + text */
+.hero-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+/* Row of CTA buttons: "View Projects" and "Get in Touch" */
+.hero-cta {
+  margin-top: 2rem;
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  animation: fadeUp 0.5s 0.3s ease both;
+}
+
+
+/* ==========================================================================
+   7. BUTTONS
+   Two variants: btn-primary (solid blue) and btn-outline (bordered).
+   Both share the .btn base class.
+   To add a new button: <a href="#" class="btn btn-primary">Label</a>
+   ========================================================================== */
+
+/* Base button style — shared by both types */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.65rem 1.3rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none; /* No underline */
+  border-radius: 8px;
+  transition: all 0.2s;  /* Smooth hover effects */
+  cursor: pointer;
+  border: none;
+}
+
+/* Solid blue button */
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: var(--accent-hover); /* Darker blue */
+  transform: translateY(-1px);     /* Lift up slightly */
+  box-shadow: 0 6px 20px rgba(79, 126, 248, 0.3); /* Blue glow shadow */
+}
+
+/* Transparent button with border */
+.btn-outline {
+  background: transparent;
+  color: var(--text-strong);
+  border: 1px solid var(--border);
+}
+
+.btn-outline:hover {
+  border-color: var(--accent); /* Border turns blue */
+  color: var(--accent);        /* Text turns blue */
+  transform: translateY(-1px); /* Lift up slightly */
+}
+
+
+/* ==========================================================================
+   8. TERMINAL CARD
+   The fake code terminal displayed in the hero section.
+   It always uses dark styling regardless of light/dark theme.
+   ========================================================================== */
+
+.terminal-card {
+  background: #0d1117;       /* Always dark background */
+  border: 1px solid #30363d;
+  border-radius: 10px;
+  overflow: hidden;          /* Clip children to rounded corners */
+  font-family: 'JetBrains Mono', monospace; /* Code font */
+  font-size: 0.76rem;
+  width: 320px;
+  flex-shrink: 0;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  animation: fadeIn 0.6s 0.4s ease both; /* Fade in after hero text */
+}
+
+/* Slightly lighter shadow in light mode */
+[data-theme="light"] .terminal-card {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Top bar with the three colored dots (red, yellow, green) */
+.t-bar {
+  background: #161b22;
+  padding: 0.6rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  border-bottom: 1px solid #30363d;
+}
+
+/* Individual dot */
+.t-dot { width: 10px; height: 10px; border-radius: 50%; }
+.t-dot.r { background: #ff5f57; } /* Red — close */
+.t-dot.y { background: #febc2e; } /* Yellow — minimize */
+.t-dot.g { background: #28c840; } /* Green — maximize */
+
+/* Terminal text content area */
+.t-body {
+  padding: 1.2rem 1.4rem;
+  line-height: 1.9;
+}
+
+/* Green "~ $" prompt */
+.t-prompt { color: #22c997; }
+
+/* Command text after the prompt */
+.t-cmd { color: #e6edf3; }
+
+/* Output lines (the JSON content) */
+.t-out {
+  color: #8b949e;
+  padding-left: 0.8rem;
+  display: block; /* Each output on its own line */
+}
+
+/* JSON keys in blue */
+.t-key { color: #79c0ff; }
+
+/* String values in green */
+.t-str { color: #a8d5a2; }
+
+/* Number values in orange */
+.t-num { color: #f0883e; }
+
+/* Blinking cursor at the end */
+.t-cursor {
+  display: inline-block;
+  width: 7px;
+  height: 13px;
+  background: #22c997;
+  animation: blink 1.1s step-end infinite; /* Blink animation */
+  vertical-align: text-bottom;
+  margin-left: 2px;
+}
+
+
+/* ==========================================================================
+   9. DIVIDER
+   A thin horizontal line used to separate sections visually.
+   Usage in HTML: <div class="divider"></div>
+   ========================================================================== */
+
+.divider {
+  height: 1px;
+  background: var(--border);
+  transition: background 0.3s; /* Smooth color change on theme switch */
+}
+
+
+/* ==========================================================================
+   10. SECTION COMMONS
+   Styles shared across all content sections (Skills, Projects, etc.)
+   ========================================================================== */
+
+/* Vertical padding for each section */
+section.section {
+  padding: 5rem 0;
+}
+
+/* Container for the eyebrow label + title */
+.section-header {
+  margin-bottom: 2.5rem;
+}
+
+/* Small uppercase label above section title e.g. "SKILLS" */
+.section-eyebrow {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);   /* Blue color */
+  margin-bottom: 0.4rem;
+}
+
+/* Main section heading e.g. "Technical Expertise" */
+h2.section-title {
+  font-size: clamp(1.5rem, 2.5vw, 2rem); /* Responsive size */
+  font-weight: 700;
+  color: var(--heading);
+  letter-spacing: -0.02em;
+}
+
+
+/* ==========================================================================
+   11. SKILLS
+   Skill chips displayed as small tag-like boxes.
+   TO ADD A NEW SKILL: Copy a <div class="chip"> and change the text.
+   ========================================================================== */
+
+/* One skill category block (e.g. "Languages") */
+.skills-block {
+  margin-bottom: 2rem;
+}
+
+/* Small uppercase label for each skill category */
+.skills-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.75rem;
+}
+
+/* Flex row of chips — wraps to next line if too many */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* Individual skill chip */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.4rem 0.85rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 0.83rem;
+  font-weight: 500;
+  color: var(--text-strong);
+  transition: all 0.2s;
+  cursor: default; /* No pointer since chips aren't clickable */
+}
+
+.chip:hover {
+  border-color: var(--accent); /* Blue border on hover */
+  color: var(--accent);        /* Blue text on hover */
+  transform: translateY(-2px); /* Slight lift */
+}
+
+/* Small green dot inside some chips */
+.chip-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent2); /* Green */
+  flex-shrink: 0;
+}
+
+
+/* ==========================================================================
+   12. PROJECTS
+   Cards displayed in a responsive grid.
+   TO ADD A NEW PROJECT: Copy one <div class="project-card"> block in index.html.
+   ========================================================================== */
+
+/* Responsive grid — fills with columns of min 280px each */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.25rem;
+}
+
+/* Individual project card */
+.project-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.6rem;
+  transition: all 0.25s;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.project-card:hover {
+  border-color: var(--accent);          /* Blue border on hover */
+  transform: translateY(-3px);          /* Card lifts up */
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12); /* Shadow below card */
+}
+
+/* Top row: project name on left, GitHub link on right */
+.project-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+/* Project name text */
+.project-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--heading);
+  line-height: 1.3;
+}
+
+/* "GitHub ↗" link */
+.project-gh {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--muted);
+  text-decoration: none;
+  white-space: nowrap; /* Don't wrap to next line */
+  transition: color 0.2s;
+  flex-shrink: 0;
+}
+
+.project-gh:hover { color: var(--accent); }
+
+/* Date shown below project name */
+.project-date-tag {
+  font-size: 0.72rem;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+/* Project description paragraph */
+.project-desc {
+  font-size: 0.85rem;
+  color: var(--text);
+  line-height: 1.7;
+  flex: 1; /* Takes remaining space, pushes tags to bottom */
+}
+
+/* Row of colored tech tags at the bottom */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: auto; /* Sticks to bottom of card */
+}
+
+/* Individual tech tag */
+.tag {
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  background: var(--tag-bg);
+  color: var(--tag-color);
+  border: 1px solid var(--tag-border);
+}
+
+
+/* ==========================================================================
+   13. WIDE PROJECT CARD
+   Used for the full-width "In Progress" project card.
+   Spans all columns in the grid.
+   ========================================================================== */
+
+/* Spans the full grid width */
+.project-card--wide {
+  grid-column: 1 / -1;      /* Start at first column, end at last */
+  border-color: var(--accent2); /* Green border to stand out */
+}
+
+/* Top bar with "In Progress" badge and course label */
+.project-card-inprogress-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+/* Green "In Progress" badge */
+.inprogress-badge {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #fff;
+  background: var(--accent2); /* Green */
+  padding: 0.2rem 0.65rem;
+  border-radius: 4px;
+}
+
+/* "Full Stack Development Course Project" label */
+.project-course-label {
+  font-size: 0.75rem;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+/* Slightly larger name for the wide card */
+.project-name--lg {
+  font-size: 1.05rem;
+}
+
+/* Grid of 4 feature highlight boxes inside the wide card */
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+/* Individual feature box */
+.feature-item {
+  background: var(--bg);     /* Page background color — slightly inset look */
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.7rem 0.9rem;
+}
+
+/* Feature label e.g. "Authentication" */
+.feature-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.3rem;
+}
+
+/* Feature description text */
+.feature-desc {
+  font-size: 0.78rem;
+  color: var(--text);
+  line-height: 1.5;
+}
+
+
+/* ==========================================================================
+   14. TIMELINE
+   Used in the Education section to show schools chronologically.
+   The vertical line runs down the left side.
+   TO ADD A NEW SCHOOL: Copy a <div class="tl-item"> block in index.html.
+   ========================================================================== */
+
+.timeline {
+  position: relative;  /* Needed so the ::before line is positioned relative to this */
+  padding-left: 1.75rem;
+}
+
+/* The vertical line running down the left */
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 6px;
+  bottom: 6px;
+  width: 2px;
+  background: var(--border);
+  border-radius: 2px;
+  transition: background 0.3s;
+}
+
+/* Each school entry */
+.tl-item {
+  position: relative;
+  padding: 1.5rem 0 1.5rem 1.75rem; /* Indented from the timeline line */
+}
+
+.tl-item:last-child {
+  padding-bottom: 0; /* No extra space after last item */
+}
+
+/* The small circle dot on the timeline line */
+.tl-item::before {
+  content: '';
+  position: absolute;
+  left: -5px;     /* Centered on the 2px line */
+  top: 1.9rem;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--bg);       /* Matches page background */
+  border: 2px solid var(--accent); /* Blue ring */
+  transition: background 0.3s;  /* Smooth theme switch */
+}
+
+/* Row: school name on left, date on right */
+.tl-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin-bottom: 0.25rem;
+}
+
+/* School/university name */
+.tl-school {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--heading);
+}
+
+/* Date range e.g. "Aug 2023 — Present" */
+.tl-date {
+  font-size: 0.78rem;
+  color: var(--accent2); /* Green */
+  font-weight: 600;
+}
+
+/* Degree/subject line */
+.tl-degree {
+  font-size: 0.85rem;
+  color: var(--text);
+  margin-bottom: 0.5rem;
+}
+
+/* Score badge e.g. "CGPA: 7.67" or "80.8%" */
+.tl-score {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--accent);
+  background: var(--tag-bg);
+  border: 1px solid var(--tag-border);
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+}
+
+
+/* ==========================================================================
+   15. TRAINING CARD
+   Single card in the Training/Professional Development section.
+   TO UPDATE TRAINING: Edit the text inside .training-card in index.html.
+   ========================================================================== */
+
+.training-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.6rem;
+  max-width: 640px; /* Don't stretch too wide */
+  transition: border-color 0.2s;
+}
+
+.training-card:hover {
+  border-color: var(--accent); /* Blue border on hover */
+}
+
+/* Course title */
+.training-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--heading);
+  margin-bottom: 0.3rem;
+}
+
+/* Institution and date */
+.training-org {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-bottom: 0.75rem;
+}
+
+/* Description of what was learned */
+.training-desc {
+  font-size: 0.85rem;
+  color: var(--text);
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+
+/* ==========================================================================
+   16. CERTIFICATES
+   Grid of certificate cards.
+   TO ADD A CERTIFICATE: Copy a <div class="cert-card"> block in index.html.
+   ========================================================================== */
+
+/* Responsive grid */
+.certs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+/* Individual certificate card */
+.cert-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.2rem 1.4rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  transition: all 0.2s;
+}
+
+.cert-card:hover {
+  border-color: var(--accent2); /* Green border on hover */
+  transform: translateY(-2px);  /* Card lifts */
+}
+
+/* Emoji icon box on the left */
+.cert-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: rgba(34, 201, 151, 0.12); /* Light green background */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0; /* Don't shrink */
+  font-size: 1rem;
+}
+
+/* Certificate name */
+.cert-name {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--heading);
+  line-height: 1.3;
+  margin-bottom: 0.2rem;
+}
+
+/* Issuer + date */
+.cert-org {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+
+/* ==========================================================================
+   17. CONTACT SECTION
+   Centered layout with a row of contact links.
+   TO ADD/CHANGE CONTACT: Edit the <a class="contact-link"> tags in index.html.
+   ========================================================================== */
+
+#contact {
+  text-align: center; /* Center all content */
+}
+
+/* Short description text below "Let's Connect" */
+.contact-subtitle {
+  font-size: 0.9rem;
+  color: var(--muted);
+  max-width: 440px;
+  margin: 0.75rem auto 2rem; /* auto left/right centers it */
+}
+
+/* Row of contact buttons */
+.contact-links {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap; /* Wrap on small screens */
+}
+
+/* Individual contact button */
+.contact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.2rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text-strong);
+  text-decoration: none;
+  font-size: 0.83rem;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.contact-link:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(79, 126, 248, 0.12);
+}
+
+
+/* ==========================================================================
+   18. FOOTER
+   Simple centered text at the very bottom of the page.
+   ========================================================================== */
+
+footer {
+  border-top: 1px solid var(--border);
+  padding: 1.5rem 2rem;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.78rem;
+  transition: border-color 0.3s;
+}
+
+
+/* ==========================================================================
+   19. SCROLL REVEAL
+   Sections start invisible (opacity 0, shifted down).
+   When they scroll into view, JavaScript adds the .visible class,
+   which triggers the CSS transition to make them appear.
+   ========================================================================== */
+
+/* Starting state — invisible and shifted down */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+
+/* End state — fully visible (added by JavaScript) */
+.reveal.visible {
+  opacity: 1;
+  transform: none; /* Back to normal position */
+}
+
+
+/* ==========================================================================
+   20. KEYFRAME ANIMATIONS
+   These define the motion sequences used by various elements.
+   ========================================================================== */
+
+/* Used by hero text elements — slides up and fades in */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px); /* Start 16px below */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);    /* End at normal position */
+  }
+}
+
+/* Used by terminal card — just fades in without movement */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Used by the green dot in the hero badge — pulses in/out */
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.6; transform: scale(0.8); }
+}
+
+/* Used by the terminal cursor — blinks on/off */
+@keyframes blink {
+  50% { opacity: 0; } /* Half the time invisible */
+}
+
+
+/* ==========================================================================
+   21. RESPONSIVE STYLES
+   These rules only apply on screens narrower than 768px (mobile/tablet).
+   They simplify the layout for smaller screens.
+   ========================================================================== */
+
+@media (max-width: 768px) {
+
+  /* Reduce navbar padding on mobile */
+  nav {
+    padding: 0 1.5rem;
+  }
+
+  /* Hide nav links on mobile (use hamburger or just scroll) */
+  .nav-links {
+    display: none;
+  }
+
+  /* Reduce container padding */
+  .container {
+    padding: 0 1.25rem;
+  }
+
+  /* Stack hero text and terminal vertically */
+  .hero-inner {
+    grid-template-columns: 1fr; /* Single column */
+  }
+
+  /* Hide terminal card on mobile — too small to display well */
+  .terminal-card {
+    display: none;
+  }
+
+  /* Stack project cards in a single column */
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Less vertical padding for sections */
+  section.section {
+    padding: 3.5rem 0;
+  }
+}

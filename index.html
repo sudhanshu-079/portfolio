@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<!--
+  ==========================================================================
+  PORTFOLIO — Sudhanshu Kumar Suman
+  File: index.html
+
+  HOW THIS FILE WORKS:
+  - This file contains ONLY the structure (HTML) of the page.
+  - All visual styling is in style.css
+  - All interactive behavior is in script.js
+  - To update content, just find the right section below and edit the text.
+
+  FILE STRUCTURE:
+  1.  <head>          — Page metadata, font imports, CSS link
+  2.  <nav>           — Fixed top navigation bar
+  3.  #hero           — First section: name, description, terminal
+  4.  #skills         — Technical skills chips
+  5.  #projects       — Project cards grid
+  6.  #education      — Education timeline
+  7.  #training       — Training/course card
+  8.  #certs          — Certificate cards
+  9.  #contact        — Contact links
+  10. <footer>        — Bottom bar
+  11. <script>        — Links to script.js
+  ==========================================================================
+-->
+<html lang="en" data-theme="light">
+<!--
+  data-theme="light" → page starts in light mode.
+  Change to data-theme="dark" to start in dark mode instead.
+  The CSS in style.css reads this attribute to pick colors.
+-->
+
+<head>
+  <!-- Character encoding — always include this -->
+  <meta charset="UTF-8" />
+
+  <!-- Makes the page responsive on mobile — don't remove this -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Browser tab title — change this to update what shows in the tab -->
+  <title>Sudhanshu Kumar Suman — CS Engineer &amp; ML Developer</title>
+
+  <!--
+    Google Fonts — loads two fonts:
+    - "Inter" (weights 400, 500, 600, 700) → used for all body text
+    - "JetBrains Mono" (weights 400, 500) → used for the terminal card only
+    If you want a different font, replace the URL here and update font-family in style.css
+  -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Link to your external stylesheet — all visual styles live there -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- ====================================================================
+    NAVBAR
+    Fixed navigation bar at the top of the screen.
+    - Left side: your name (logo)
+    - Right side: nav links + theme toggle button
+
+    TO ADD A NEW NAV LINK:
+    Copy one <li> inside .nav-links and update the href and text.
+    Make sure the href matches the id of the target section (e.g. #skills).
+  ===================================================================== -->
+  <nav>
+
+    <!-- Your name shown as the logo on the left -->
+    <!-- The <span> wraps "Kumar Suman" to color it blue (via CSS) -->
+    <div class="nav-logo">Sudhanshu <span>Kumar Suman</span></div>
+
+    <!-- Right side: links + toggle button -->
+    <div class="nav-right">
+
+      <!-- Navigation links list -->
+      <ul class="nav-links">
+        <!-- Each href must match the id of a <section> below -->
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#certs">Certs</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+
+      <!--
+        Theme toggle button
+        id="themeToggle" → script.js finds this by ID to attach the click event
+        The emoji (☀️ or 🌙) is set and changed by script.js
+      -->
+      <button class="theme-toggle" id="themeToggle" title="Toggle light/dark mode">🌙</button>
+
+    </div>
+  </nav>
+
+
+  <!-- ====================================================================
+    HERO SECTION
+    The first full-screen section visitors see.
+    Contains: availability badge, name, role, description,
+              meta info row, CTA buttons, and terminal card.
+
+    TO UPDATE:
+    - Change your name in <h1 class="hero-name">
+    - Change your role in <span class="hero-role">
+    - Change the description in <p class="hero-desc">
+    - Update meta items (location, CGPA, stack) in .hero-meta
+    - Update terminal card text in .t-body
+  ===================================================================== -->
+  <div class="container">
+    <section id="hero">
+      <div class="hero-inner">
+
+        <!-- ── LEFT COLUMN: Text content ── -->
+        <div>
+
+          <!--
+            Availability badge — the green pill at the top
+            Change "Available for Internships" to whatever status you want
+            e.g. "Open to Full-time Roles" or "Currently Employed"
+          -->
+          <div class="hero-badge">Available for Internships</div>
+
+          <!--
+            Your full name (h1 = most important heading on the page)
+            <span class="hero-role"> appears on the next line in blue
+          -->
+          <h1 class="hero-name">
+            Sudhanshu Kumar Suman
+            <span class="hero-role">CS Engineer · ML Developer</span>
+          </h1>
+
+          <!-- Short intro paragraph — keep this to 2-3 sentences -->
+          <p class="hero-desc">
+            B.Tech Computer Science student at Lovely Professional University,
+            building ML systems, NLP pipelines, and full-stack applications.
+            Passionate about intelligent software that solves real problems.
+          </p>
+
+          <!--
+            Meta info row — small text with icons
+            Each .hero-meta-item has an SVG icon + text
+            TO UPDATE: Just change the text inside each span
+          -->
+          <div class="hero-meta">
+
+            <!-- Location -->
+            <span class="hero-meta-item">
+              <!-- Map pin icon (SVG) — don't change this unless you want a different icon -->
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
+              Phagwara, Punjab
+            </span>
+
+            <!-- CGPA -->
+            <span class="hero-meta-item">
+              <!-- Graduation cap icon -->
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2">
+                <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+              </svg>
+              CGPA: 7.67
+              <!-- TO UPDATE CGPA: change "7.67" to your current CGPA -->
+            </span>
+
+            <!-- Tech stack summary -->
+            <span class="hero-meta-item">
+              <!-- Server/stack icon -->
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2">
+                <rect x="2" y="2" width="20" height="8" rx="2"/>
+                <rect x="2" y="14" width="20" height="8" rx="2"/>
+              </svg>
+              Python · ML · NLP
+            </span>
+
+          </div>
+
+          <!-- Call-to-action buttons -->
+          <div class="hero-cta">
+            <!-- Primary blue button — scrolls to projects -->
+            <a href="#projects" class="btn btn-primary">View Projects</a>
+            <!-- Outline button — opens email client -->
+            <a href="mailto:sudsuman07@gmail.com" class="btn btn-outline">Get in Touch</a>
+          </div>
+
+        </div><!-- end left column -->
+
+
+        <!-- ── RIGHT COLUMN: Terminal card ── -->
+        <!--
+          This fake terminal card is purely decorative / visual.
+          It's hidden on mobile (see style.css responsive section).
+          TO UPDATE: Change the values in .t-out lines below
+        -->
+        <div class="terminal-card">
+
+          <!-- Top bar with the three colored dots -->
+          <div class="t-bar">
+            <div class="t-dot r"></div> <!-- Red dot -->
+            <div class="t-dot y"></div> <!-- Yellow dot -->
+            <div class="t-dot g"></div> <!-- Green dot -->
+          </div>
+
+          <!-- Terminal text content -->
+          <div class="t-body">
+
+            <!-- Command prompt line: "~ $ python profile.py" -->
+            <div>
+              <span class="t-prompt">~ $</span>
+              <span class="t-cmd"> python profile.py</span>
+            </div>
+
+            <!-- Output: JSON-like profile data -->
+            <span class="t-out">{</span>
+            <span class="t-out">&nbsp;&nbsp;<span class="t-key">name</span>: <span class="t-str">"Sudhanshu Kumar Suman"</span>,</span>
+            <span class="t-out">&nbsp;&nbsp;<span class="t-key">degree</span>: <span class="t-str">"B.Tech CSE"</span>,</span>
+            <span class="t-out">&nbsp;&nbsp;<span class="t-key">cgpa</span>: <span class="t-num">7.67</span>,</span>
+            <span class="t-out">&nbsp;&nbsp;<span class="t-key">stack</span>: [<span class="t-str">"Python"</span>, <span class="t-str">"ML"</span>, <span class="t-str">"NLP"</span>],</span>
+            <span class="t-out">&nbsp;&nbsp;<span class="t-key">status</span>: <span class="t-str">"open_to_internship"</span></span>
+            <span class="t-out">}</span>
+
+            <!-- New prompt line with blinking cursor -->
+            <div style="margin-top:0.3rem">
+              <span class="t-prompt">~ $</span>
+              <span class="t-cursor"></span> <!-- Blinking cursor -->
+            </div>
+
+          </div>
+        </div><!-- end terminal card -->
+
+      </div><!-- end hero-inner -->
+    </section>
+  </div><!-- end container -->
+
+
+  <!-- Thin horizontal divider line between sections -->
+  <div class="divider"></div>
+
+
+  <!-- ====================================================================
+    SKILLS SECTION
+    Groups your skills into 4 categories displayed as chip tags.
+
+    TO ADD A SKILL: Copy <div class="chip">SkillName</div> into the right group
+    TO ADD A CATEGORY: Copy an entire .skills-block and change the label + chips
+    TO REMOVE A SKILL: Delete that <div class="chip"> line
+  ===================================================================== -->
+  <div class="container">
+    <section id="skills" class="section reveal">
+      <!-- reveal class → section fades in on scroll (handled by script.js) -->
+
+      <!-- Section header: eyebrow label + title -->
+      <div class="section-header">
+        <div class="section-eyebrow">Skills</div>
+        <h2 class="section-title">Technical Expertise</h2>
+      </div>
+
+      <!-- ── LANGUAGES ── -->
+      <div class="skills-block">
+        <div class="skills-label">Languages</div>
+        <div class="chips">
+          <!-- Each .chip-dot is the small green dot inside the chip -->
+          <div class="chip"><div class="chip-dot"></div>Python</div>
+          <div class="chip"><div class="chip-dot"></div>Java</div>
+          <div class="chip"><div class="chip-dot"></div>C++</div>
+          <div class="chip"><div class="chip-dot"></div>C</div>
+          <!-- ADD NEW LANGUAGE: <div class="chip"><div class="chip-dot"></div>YourLanguage</div> -->
+        </div>
+      </div>
+
+      <!-- ── ML / AI FRAMEWORKS ── -->
+      <div class="skills-block">
+        <div class="skills-label">ML / AI Frameworks</div>
+        <div class="chips">
+          <div class="chip"><div class="chip-dot"></div>TensorFlow</div>
+          <div class="chip"><div class="chip-dot"></div>Keras</div>
+          <div class="chip"><div class="chip-dot"></div>MobileNetV2</div>
+          <div class="chip"><div class="chip-dot"></div>Scikit-learn</div>
+        </div>
+      </div>
+
+      <!-- ── TOOLS & PLATFORMS ── -->
+      <div class="skills-block">
+        <div class="skills-label">Tools &amp; Platforms</div>
+        <!-- &amp; is the HTML code for the & character -->
+        <div class="chips">
+          <div class="chip"><div class="chip-dot"></div>Streamlit</div>
+          <div class="chip"><div class="chip-dot"></div>Flask</div>
+          <div class="chip"><div class="chip-dot"></div>Gradio</div>
+          <div class="chip"><div class="chip-dot"></div>MySQL</div>
+          <div class="chip"><div class="chip-dot"></div>HTML / CSS</div>
+        </div>
+      </div>
+
+      <!-- ── SOFT SKILLS ── (no dot since these aren't technical) -->
+      <div class="skills-block">
+        <div class="skills-label">Soft Skills</div>
+        <div class="chips">
+          <div class="chip">Problem-Solving</div>
+          <div class="chip">Team Player</div>
+          <div class="chip">Analytical Thinking</div>
+          <div class="chip">Adaptability</div>
+          <div class="chip">Self-Learning</div>
+        </div>
+      </div>
+
+    </section>
+  </div>
+
+
+  <div class="divider"></div>
+
+
+  <!-- ====================================================================
+    PROJECTS SECTION
+    Displays your work as cards in a responsive grid.
+
+    TO ADD A NEW PROJECT:
+    Copy one <div class="project-card"> block, paste it inside .projects-grid,
+    and update the name, date, description, GitHub link, and tags.
+
+    TO ADD A GITHUB LINK:
+    Set the href inside <a class="project-gh"> to your repo URL.
+  ===================================================================== -->
+  <div class="container">
+    <section id="projects" class="section reveal">
+
+      <div class="section-header">
+        <div class="section-eyebrow">Projects</div>
+        <h2 class="section-title">Featured Work</h2>
+      </div>
+
+      <!-- Responsive grid of project cards -->
+      <div class="projects-grid">
+
+
+        <!-- ── PROJECT 1: Hinglish Text Normalization ── -->
+        <div class="project-card">
+
+          <!-- Top row: title on left, GitHub link on right -->
+          <div class="project-top">
+            <div class="project-name">Hinglish Text Normalization</div>
+            <a href="https://github.com/sudhanshu-079/Hinglish-text-normalization-MSME"
+               target="_blank" class="project-gh">
+              <!-- GitHub icon (SVG) -->
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2A10 10 0 002 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0012 2z"/>
+              </svg>
+              GitHub ↗
+            </a>
+          </div>
+
+          <!-- Date of the project -->
+          <div class="project-date-tag">Dec 2025</div>
+
+          <!-- Description — keep to 2-3 sentences -->
+          <div class="project-desc">
+            End-to-end NLP pipeline to normalize noisy Hinglish
+            (Hindi–English code-mixed) ASR text into clean, business-ready
+            content for MSMEs. Features spelling correction, phonetic &amp;
+            number normalization, and CSV-based evaluation using WER and
+            token accuracy metrics.
+          </div>
+
+          <!-- Tech stack tags — add/remove as needed -->
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">Streamlit</span>
+            <span class="tag">NLP</span>
+            <span class="tag">ASR</span>
+            <span class="tag">WER</span>
+          </div>
+
+        </div><!-- end project 1 -->
+
+
+        <!-- ── PROJECT 2: Plant Disease Prediction ── -->
+        <div class="project-card">
+
+          <div class="project-top">
+            <div class="project-name">Plant Disease Prediction</div>
+            <a href="https://github.com/sudhanshu-079/Plant-Disease"
+               target="_blank" class="project-gh">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2A10 10 0 002 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0012 2z"/>
+              </svg>
+              GitHub ↗
+            </a>
+          </div>
+
+          <div class="project-date-tag">May 2025</div>
+
+          <div class="project-desc">
+            Image classification model using MobileNetV2 to detect 8 classes
+            of plant leaf diseases. Achieved 86% accuracy. Deployed as a live
+            web application using Gradio for real-time disease detection from
+            leaf images.
+          </div>
+
+          <div class="tags">
+            <span class="tag">TensorFlow</span>
+            <span class="tag">MobileNetV2</span>
+            <span class="tag">Gradio</span>
+            <span class="tag">86% Accuracy</span>
+          </div>
+
+        </div><!-- end project 2 -->
+
+
+        <!-- ── PROJECT 3: AI OS Performance Analyzer ── -->
+        <div class="project-card">
+
+          <div class="project-top">
+            <div class="project-name">AI OS Performance Analyzer</div>
+            <a href="https://github.com/sudhanshu-079/OS-project"
+               target="_blank" class="project-gh">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2A10 10 0 002 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0012 2z"/>
+              </svg>
+              GitHub ↗
+            </a>
+          </div>
+
+          <div class="project-date-tag">Apr 2025</div>
+
+          <div class="project-desc">
+            Real-time process monitoring system using Isolation Forest
+            (unsupervised ML) to detect anomalies in CPU, memory, and I/O
+            usage. Interactive Streamlit dashboard for live insights and
+            proactive system performance management.
+          </div>
+
+          <div class="tags">
+            <span class="tag">Scikit-learn</span>
+            <span class="tag">Streamlit</span>
+            <span class="tag">Isolation Forest</span>
+            <span class="tag">Anomaly Detection</span>
+          </div>
+
+        </div><!-- end project 3 -->
+
+
+        <!-- ── PROJECT 4: AI Research Paper Platform ── (FULL WIDTH CARD) -->
+        <!--
+          project-card--wide makes this span the full grid width.
+          The green border (accent2 color) makes it stand out as your biggest project.
+        -->
+        <div class="project-card project-card--wide">
+
+          <!-- Top bar with "In Progress" badge -->
+          <div class="project-card-inprogress-bar">
+            <!-- Green badge — change text if project status changes -->
+            <span class="inprogress-badge">In Progress</span>
+            <span class="project-course-label">Full Stack Development Course Project</span>
+          </div>
+
+          <div class="project-top">
+            <!-- Larger title for this card (.project-name--lg) -->
+            <div class="project-name project-name--lg">
+              AI Research Paper Platform — RAG Chatbot &amp; Learning Hub
+            </div>
+            <!--
+              TO ADD GITHUB LINK when repo is ready:
+              <a href="https://github.com/YOUR-REPO" target="_blank" class="project-gh">
+                GitHub ↗
+              </a>
+            -->
+          </div>
+
+          <div class="project-date-tag">2025 — Ongoing</div>
+
+          <!-- Full description paragraph -->
+          <div class="project-desc" style="margin-top:0.5rem;">
+            A full-stack web platform for reading, uploading, and interacting
+            with research papers using a RAG (Retrieval-Augmented Generation)
+            based conversational chatbot. Users can upload documents and chat
+            with them in real time, with full chat history saved. Includes
+            Google &amp; LinkedIn OAuth authentication, document summarization,
+            an AI news carousel showing the top 5 recent AI developments, and
+            a categorized admin panel for research uploads. Also features a
+            <strong>Learn AI</strong> section with courses, notes &amp; study
+            material, plus complete documentation.
+          </div>
+
+          <!--
+            Feature grid — 4 highlight boxes.
+            TO ADD A FEATURE BOX: Copy one .feature-item and update label + desc.
+          -->
+          <div class="feature-grid">
+
+            <div class="feature-item">
+              <div class="feature-label">Authentication</div>
+              <div class="feature-desc">Login · Register · Google OAuth · LinkedIn OAuth · Logout</div>
+            </div>
+
+            <div class="feature-item">
+              <div class="feature-label">RAG Chatbot</div>
+              <div class="feature-desc">Real-time Q&amp;A on uploaded papers · Conversational AI · Chat history saved</div>
+            </div>
+
+            <div class="feature-item">
+              <div class="feature-label">Research Hub</div>
+              <div class="feature-desc">Admin uploads across ML · LLMs · Gen AI · Agentic AI · Data Analytics · Others</div>
+            </div>
+
+            <div class="feature-item">
+              <div class="feature-label">Smart Features</div>
+              <div class="feature-desc">Document summarization · AI News Carousel · Learn AI · Docs · User uploads</div>
+            </div>
+
+          </div><!-- end feature-grid -->
+
+          <!-- Tech tags -->
+          <div class="tags" style="margin-top:1rem;">
+            <span class="tag">Full Stack</span>
+            <span class="tag">RAG</span>
+            <span class="tag">LLM</span>
+            <span class="tag">OAuth</span>
+            <span class="tag">Vector DB</span>
+            <span class="tag">Python</span>
+            <span class="tag">React</span>
+            <span class="tag">NLP</span>
+            <span class="tag">Generative AI</span>
+          </div>
+
+        </div><!-- end project 4 (wide) -->
+
+      </div><!-- end projects-grid -->
+    </section>
+  </div><!-- end container -->
+
+
+  <div class="divider"></div>
+
+
+  <!-- ====================================================================
+    EDUCATION SECTION
+    Timeline showing your academic history from newest to oldest.
+
+    TO ADD A NEW SCHOOL: Copy one .tl-item block and update the content.
+    TO UPDATE CGPA: Find "CGPA: 7.67" and change the number.
+  ===================================================================== -->
+  <div class="container">
+    <section id="education" class="section reveal">
+
+      <div class="section-header">
+        <div class="section-eyebrow">Education</div>
+        <h2 class="section-title">Academic Background</h2>
+      </div>
+
+      <!-- Timeline container — the vertical line is created by CSS ::before -->
+      <div class="timeline">
+
+        <!-- ── ENTRY 1: LPU (most recent) ── -->
+        <div class="tl-item">
+          <!-- Row: school name (left) + date (right) -->
+          <div class="tl-row">
+            <div class="tl-school">Lovely Professional University</div>
+            <div class="tl-date">Aug 2023 — Present</div>
+            <!-- TO UPDATE: Change "Present" to graduation year when you finish -->
+          </div>
+          <!-- Degree details -->
+          <div class="tl-degree">B.Tech — Computer Science &amp; Engineering · Phagwara, Punjab</div>
+          <!-- Score badge -->
+          <span class="tl-score">CGPA: 7.67</span>
+          <!-- TO UPDATE CGPA: change 7.67 to your new CGPA -->
+        </div>
+
+        <!-- ── ENTRY 2: Premier Academy (Intermediate) ── -->
+        <div class="tl-item">
+          <div class="tl-row">
+            <div class="tl-school">Premier Academy</div>
+            <div class="tl-date">Mar 2022 — May 2023</div>
+          </div>
+          <div class="tl-degree">Intermediate — PCM · Muzaffarpur, Bihar</div>
+          <span class="tl-score">80.8%</span>
+        </div>
+
+        <!-- ── ENTRY 3: Premier Academy (Matriculation) ── -->
+        <div class="tl-item">
+          <div class="tl-row">
+            <div class="tl-school">Premier Academy</div>
+            <div class="tl-date">Mar 2019 — May 2020</div>
+          </div>
+          <div class="tl-degree">Matriculation · Muzaffarpur, Bihar</div>
+          <span class="tl-score">83.2%</span>
+        </div>
+
+      </div><!-- end timeline -->
+    </section>
+  </div>
+
+
+  <div class="divider"></div>
+
+
+  <!-- ====================================================================
+    TRAINING SECTION
+    Single card for professional training or bootcamp experience.
+
+    TO UPDATE: Just edit the text in .training-title, .training-org,
+    and .training-desc below.
+    TO ADD ANOTHER TRAINING: Copy the .training-card block and paste after it.
+  ===================================================================== -->
+  <div class="container">
+    <section id="training" class="section reveal">
+
+      <div class="section-header">
+        <div class="section-eyebrow">Training</div>
+        <h2 class="section-title">Professional Development</h2>
+      </div>
+
+      <!-- Single training card -->
+      <div class="training-card">
+        <!-- Course/training name -->
+        <div class="training-title">Foundation &amp; Data Structures in C++ and Java</div>
+        <!-- Organization · University · Date range -->
+        <div class="training-org">
+          Center of Professional Enhancement · Lovely Professional University · Jun — Jul 2025
+        </div>
+        <!-- What you learned -->
+        <div class="training-desc">
+          Implemented core data structures — arrays, linked lists, stacks, and
+          queues — along with key algorithms covering sorting, searching,
+          recursion, dynamic programming, and greedy techniques. Built an
+          automated timetable generator using graph coloring for conflict-free
+          invigilator assignment.
+        </div>
+        <!-- Tech tags used in training -->
+        <div class="tags">
+          <span class="tag">C++</span>
+          <span class="tag">Java</span>
+          <span class="tag">DSA</span>
+          <span class="tag">Graph Coloring</span>
+        </div>
+      </div>
+
+    </section>
+  </div>
+
+
+  <div class="divider"></div>
+
+
+  <!-- ====================================================================
+    CERTIFICATES SECTION
+    Grid of certificate cards.
+
+    TO ADD A CERTIFICATE:
+    Copy one .cert-card block, change the emoji in .cert-icon,
+    update .cert-name, and update .cert-org with issuer + date.
+  ===================================================================== -->
+  <div class="container">
+    <section id="certs" class="section reveal">
+
+      <div class="section-header">
+        <div class="section-eyebrow">Credentials</div>
+        <h2 class="section-title">Certificates</h2>
+      </div>
+
+      <!-- Grid of certificate cards -->
+      <div class="certs-grid">
+
+        <!-- ── CERT 1 ── -->
+        <div class="cert-card">
+          <!-- Emoji icon — change to any emoji you like -->
+          <div class="cert-icon">🎓</div>
+          <div>
+            <div class="cert-name">Data Science with Python</div>
+            <div class="cert-org">NPTEL · May 2025</div>
+          </div>
+        </div>
+
+        <!-- ── CERT 2 ── -->
+        <div class="cert-card">
+          <div class="cert-icon">💻</div>
+          <div>
+            <div class="cert-name">CodeSmart: Foundation &amp; Data Structures</div>
+            <div class="cert-org">Center of Professional Enhancement · Jun 2025</div>
+          </div>
+        </div>
+
+        <!-- ── CERT 3 ── -->
+        <div class="cert-card">
+          <div class="cert-icon">🐍</div>
+          <div>
+            <div class="cert-name">Python Programming</div>
+            <div class="cert-org">Coursera · Mar 2023</div>
+          </div>
+        </div>
+
+        <!--
+          TO ADD A NEW CERTIFICATE, copy this block and fill in your details:
+
+          <div class="cert-card">
+            <div class="cert-icon">🏆</div>
+            <div>
+              <div class="cert-name">Your Certificate Name</div>
+              <div class="cert-org">Issuer · Month Year</div>
+            </div>
+          </div>
+        -->
+
+      </div><!-- end certs-grid -->
+    </section>
+  </div>
+
+
+  <div class="divider"></div>
+
+
+  <!-- ====================================================================
+    CONTACT SECTION
+    Centered section with links to reach you.
+
+    TO UPDATE CONTACT LINKS:
+    - Email: change href="mailto:..." and the visible text
+    - GitHub: change href to your profile URL
+    - LinkedIn: change href to your profile URL
+    - Phone: change href="tel:..." and the visible text
+  ===================================================================== -->
+  <div class="container">
+    <section id="contact" class="section reveal">
+
+      <!-- Centered header -->
+      <div class="section-header" style="text-align:center">
+        <div class="section-eyebrow">Contact</div>
+        <h2 class="section-title">Let's Connect</h2>
+      </div>
+
+      <!-- Short invite text -->
+      <p class="contact-subtitle">
+        I'm actively looking for internship opportunities in ML, AI, and
+        software development. Feel free to reach out!
+      </p>
+
+      <!-- Row of contact link buttons -->
+      <div class="contact-links">
+
+        <!-- Email -->
+        <a href="mailto:sudsuman07@gmail.com" class="contact-link">
+          <!-- Envelope icon -->
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2">
+            <rect x="2" y="4" width="20" height="16" rx="2"/>
+            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+          </svg>
+          sudsuman07@gmail.com
+        </a>
+
+        <!-- GitHub -->
+        <a href="https://github.com/sudhanshu-079" target="_blank" class="contact-link">
+          <!-- GitHub icon -->
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2A10 10 0 002 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0012 2z"/>
+          </svg>
+          GitHub
+        </a>
+
+        <!-- LinkedIn -->
+        <a href="https://www.linkedin.com/in/sudhanshu72970" target="_blank" class="contact-link">
+          <!-- LinkedIn icon -->
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/>
+            <circle cx="4" cy="4" r="2"/>
+          </svg>
+          LinkedIn
+        </a>
+
+        <!-- Phone -->
+        <a href="tel:+917297038184" class="contact-link">
+          <!-- Phone icon -->
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2">
+            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.72A2 2 0 012.18 1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 8.09a16 16 0 006 6l1.45-1.45a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/>
+          </svg>
+          +91 7297038184
+        </a>
+
+      </div><!-- end contact-links -->
+    </section>
+  </div>
+
+
+  <!-- ====================================================================
+    FOOTER
+    Simple one-line footer at the bottom of the page.
+    TO UPDATE: Change the text between <footer> and </footer>.
+  ===================================================================== -->
+  <footer>
+    Sudhanshu Kumar Suman · B.Tech CSE · Lovely Professional University · Open for Internships
+  </footer>
+
+
+  <!-- ====================================================================
+    SCRIPT TAG
+    This MUST be at the bottom of <body>, AFTER all the HTML content.
+    Placing it here ensures the HTML is fully loaded before JS runs.
+    All the interactive behavior (theme toggle, scroll reveal, active nav)
+    is in script.js.
+  ===================================================================== -->
+  <script src="script.js"></script>
+
+</body>
+</html>

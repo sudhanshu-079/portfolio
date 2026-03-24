@@ -1,0 +1,87 @@
+ Sudhanshu Kumar Suman 
+LinkedIn: http://www.linkedin.com/in/sudhanshu72970 /                                                 Email: sudsuman07@gmail.com 
+Github:  https://github.com/sudhanshu-079/  
+              Mobile: +91 7297038184 
+SKILLS 
+Languages: 
+Python, C, C++, Java, Kotlin, XML 
+Tools/Platforms: 
+TensorFlow, Keras, Scikit-learn, Streamlit, Flask, MySQL, HTML, CSS, Jetpack 
+Soft Skills: 
+Problem-Solving, Team Player, Analytical Skills, Self-Learning, Adaptability 
+   PROJECTS 
+Hinglish-text-normalization-MSME| Python, Streamlit 
+ Dec’ 25 
+ 
+Built an end-to-end NLP pipeline to normalize noisy Hinglish (Hindi–English code-mixed) ASR text into 
+clean, business-ready content for MSMEs 
+ 
+Implemented rule-based text normalization including spelling correction, phonetic normalization, 
+number normalization, punctuation handling, and business term standardization. 
+ 
+Designed a modular, scalable architecture with reusable NLP components and CSV-based evaluation 
+using WER, token accuracy, and exact match metrics. 
+ 
+Plant Disease Prediction | Python, TensorFlow, Gradio  
+ May’ 25 
+ 
+Preprocessed Plant Leaf datasets using TensorFlow of eight different class of common disease, using 
+MobileNetV2 for fast training of image and for higher accuracy. 
+ 
+Leveraged ML for accurate recommendations based on parameters such as image of the leaf; 
+achieved an 86% accuracy rate. 
+ 
+Created and deployed a web- based application using Gradio for Plant disease detection demo. 
+AI-Powered Performance Analyzer for OS Processes | Python, Scikit-learn, Streamlit 
+ Apr’ 25 
+ 
+Built a real-time process monitoring system using machine learning, Streamlit, and Python to detect 
+anomalies in CPU, memory, and I/O usage, and visualize system performance through an interactive 
+dashboard.  
+ 
+Built and trained an unsupervised anomaly detection model (Isolation Forest) to identify abnormal 
+process behavior and potential system bottlenecks. 
+ 
+Integrated a scalable backend using Python to process live data streams and generate actionable system 
+insights and improved system visibility by presenting process-level insights, enabling faster debugging, 
+better optimization, and proactive performance management. 
+ TRAINING 
+Center of Professional Enhancement (Lovely Professional University) 
+   Jun’ 25 – Jul’ 25 
+Foundation and Data Structure in C++ and Java 
+ 
+Implemented core data structures including arrays, linked lists, stacks, queues and 
+sorting/searching algorithms in C++ and Java to strengthen problem-solving and algorithmic 
+thinking. 
+ 
+Practiced major algorithms including sorting, searching, recursion, dynamic programming, and greedy 
+techniques. 
+ 
+Implemented an automated timetable generator that assigns invigilators to exam slots using graph coloring to 
+avoid conflicts and ensure fair workload distribution. 
+ CERTIFICATES 
+Data Science with Python  NPTEL 
+  May’ 25 
+CodeSmart: Foundation and Data Structure in C++ and Java| Center of Professional Enhancement 
+June’ 25 
+Master Generative AI and Generative AI tools | Udemy                                                                                                                        May’25 
+Python | Coursera 
+ Mar’23
+ 
+ 
+ EDUCATION 
+Lovely Professional University 
+ Phagwara, Punjab 
+Bachelor of Technology 
+ Aug’ 23 – Present 
+Computer Science and Engineering; CGPA: 7.49 
+Premier Academy 
+   Muzaffarpur, Bihar 
+Intermediate 
+ Mar’ 22 – May’ 23 
+PCM; Percentage: 80.8% 
+Premier Academy 
+   Muzaffarpur, Bihar 
+Matriculation 
+Mar’ 19 – May’ 20 
+Percentage: 83.2% 

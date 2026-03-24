@@ -1,0 +1,11 @@
+github:https://github.com/sudhanshu-079/portfolio
+AI-Powered Performance Analyzer for OS Processes:https://github.com/sudhanshu-079/ai-performance-analyzer
+Plant-Disease:https://github.com/sudhanshu-079/Plant-Disease
+Hinglish Text Normalization for MSMEs:https://github.com/sudhanshu-079/Hinglish-text-normalization-MSME
+RAG_chat_app:https://github.com/sudhanshu-079/RAG_chat_app
+
+ google drive certifivate links:
+
+ generative ai and generative ai tool:https:https://drive.google.com/file/d/1Qd-FnByZUx0is-ZOmMpB8_TYDVtJCfYo/view?usp=sharing
+ codeSmart DSA:https://drive.google.com/file/d/1Wn9q7ZZEUuM9yqW919lP600NTHG5l1ZI/view?usp=sharing
+ NPTEL course data analytics:https://drive.google.com/file/d/1jhcCeQ50zG7vVjidYYPWZnsfJDELjGUn/view?usp=sharing

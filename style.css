@@ -258,6 +258,51 @@ nav {
   animation: pulse 2s infinite; /* Pulsing animation — defined at bottom */
 }
 
+/* Profile Image Styling */
+.profile-img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--accent);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  margin-bottom: 1.5rem;
+  animation: fadeUp 0.5s ease both;
+}
+
+/* Project Image */
+.project-img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  border: 1px solid var(--border);
+}
+
+/* Wide Project Image */
+.project-card--wide .project-img {
+  height: 240px;
+}
+
+/* Certificate Image */
+.cert-img {
+  width: 100%;
+  height: 160px;
+  object-fit: contain;
+  border-radius: 8px;
+  margin-bottom: 0.8rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+}
+
+/* Icon Image for Chips */
+.icon-img {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+}
+
 /* Your main name heading */
 h1.hero-name {
   font-size: clamp(2.2rem, 4vw, 3.2rem); /* Responsive: min 2.2rem, max 3.2rem */
